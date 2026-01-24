@@ -1,0 +1,17 @@
+# Backend .dockerignore (place in /backend directory)
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+ENV/
+.env
+.venv
+*.log
+.git
+.gitignore
+.dockerignore
+README.md
+*.md
