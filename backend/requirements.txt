@@ -1,0 +1,7 @@
+Flask==3.0.0
+flask-cors==4.0.0
+PyPDF2==3.0.1
+weasyprint==62.3
+pydyf==0.10.0
+Werkzeug==3.0.1
+requests==2.31.0

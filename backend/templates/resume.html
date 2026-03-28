@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - {{ sections.name }}</title>
+    <style>
+        @page {
+            margin: 0.75in;
+            size: Letter;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.4;
+            color: #000;
+            background: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            font-size: 11pt;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            margin-bottom: 10px;
+            padding-bottom: 3px;
+            font-weight: bold;
+        }
+
+        .skill-item, .cert-item {
+            display: inline-block;
+        }
+        
+        .skill-list, .cert-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .skill-list li, .cert-list li {
+            display: inline;
+        }
+
+        .skill-list li::after, .cert-list li::after {
+            content: " • ";
+            margin: 0 5px;
+        }
+
+        .skill-list li:last-child::after, .cert-list li:last-child::after {
+            content: "";
+        }
+
+        .experience-item, .project-item, .education-item {
+            margin-bottom: 12px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 11pt;
+        }
+
+        ul.bullets {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding-left: 20px;
+        }
+
+        ul.bullets li {
+            margin-bottom: 3px;
+        }
+
+        p {
+            margin: 0 0 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ sections.name }}</h1>
+        <div class="contact-info">
+            {{ sections.contact }}
+        </div>
+    </div>
+
+    {% if sections.summary %}
+    <div class="section">
+        <h2>Professional Summary</h2>
+        <p>{{ sections.summary }}</p>
+    </div>
+    {% endif %}
+
+    {% if sections.skills %}
+    <div class="section">
+        <h2>Skills</h2>
+        <ul class="skill-list">
+            {% for skill in sections.skills[:20] %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if sections.experience %}
+    <div class="section">
+        <h2>Professional Experience</h2>
+        {% for exp in sections.experience %}
+        <div class="experience-item">
+            <p>{{ exp }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if sections.projects %}
+    <div class="section">
+        <h2>Projects</h2>
+        {% for proj in sections.projects %}
+        <div class="project-item">
+            <p>{{ proj }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if sections.education %}
+    <div class="section">
+        <h2>Education</h2>
+        {% for edu in sections.education %}
+        <div class="education-item">
+            <p>{{ edu }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if sections.certifications %}
+    <div class="section">
+        <h2>Certifications</h2>
+        <ul class="cert-list">
+            {% for cert in sections.certifications %}
+            <li>{{ cert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</body>
+</html>
